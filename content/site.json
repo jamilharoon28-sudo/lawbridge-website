@@ -8,8 +8,13 @@
     "third_button": "Explore the Curriculum"
   },
   "curriculum_preview": {
-    "eyebrow": "LawBridge",
+    "eyebrow": "Practical skills curriculum",
     "title": "Develop the skills legal education alone cannot fully provide.",
     "intro": "The LawBridge curriculum is built around practical skills aspiring lawyers need to become more commercially aware, confident and practice-ready."
+  },
+  "problem_section": {
+    "eyebrow": "The problem",
+    "title": "Legal education is changing. The skills gap is growing.",
+    "intro": "Aspiring lawyers are entering a profession shaped by the SQE, QWE flexibility, commercial pressure and rapid advances in AI. Many students still need practical exposure to how legal work is delivered."
   }
 }
