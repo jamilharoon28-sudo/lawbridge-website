@@ -213,6 +213,7 @@ function render(){let r=route().page,views={home,curriculum,students,mentors,pro
 menu.onclick=()=>nav.classList.toggle("open");document.addEventListener("scroll",()=>$(".header").classList.toggle("scrolled",scrollY>20),{passive:true});addEventListener("hashchange",render);render();
 </script>
 
+
 <script>
 (function () {
   async function loadLawBridgeCMS() {
@@ -227,12 +228,17 @@ menu.onclick=()=>nav.classList.toggle("open");document.addEventListener("scroll"
 
       function replaceText(oldText, newText) {
         if (!newText) return;
-        document.querySelectorAll("h1,p,a,button").forEach(el => {
+        document.querySelectorAll("h1,h2,h3,p,a,button,span").forEach(el => {
           if ((el.textContent || "").trim() === oldText.trim()) {
             el.textContent = newText;
           }
         });
       }
+
+      replaceText(
+        "Practical legal development for the SQE, QWE and AI era",
+        home.eyebrow
+      );
 
       replaceText(
         "Bridge the gap between legal education and real-world legal practice.",
@@ -244,10 +250,29 @@ menu.onclick=()=>nav.classList.toggle("open");document.addEventListener("scroll"
         home.intro
       );
 
-      replaceText(
-        "Join as a Student",
-        home.primary_button
-      );
+      replaceText("Join as a Student", home.primary_button);
+      replaceText("Become a Mentor", home.secondary_button);
+      replaceText("Explore the Curriculum", home.third_button);
+
+      if (data.curriculum_preview) {
+        const curriculum = data.curriculum_preview;
+
+        replaceText(
+          "Practical skills curriculum",
+          curriculum.eyebrow
+        );
+
+        replaceText(
+          "Develop the skills legal education alone cannot fully provide.",
+          curriculum.title
+        );
+
+        replaceText(
+          "The LawBridge curriculum is built around practical skills aspiring lawyers need to become more commercially aware, confident and practice-ready.",
+          curriculum.intro
+        );
+      }
+
     } catch (error) {
       console.warn("LawBridge CMS content could not be loaded.", error);
     }
