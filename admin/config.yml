@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: main
+  branch: cms-upgrade
 
 media_folder: uploads
 public_folder: /uploads
@@ -49,3 +49,71 @@ collections:
               - label: Intro
                 name: intro
                 widget: text
+
+          - label: Problem Section
+            name: problem_section
+            widget: object
+            fields:
+              - label: Eyebrow
+                name: eyebrow
+                widget: string
+              - label: Title
+                name: title
+                widget: text
+              - label: Intro
+                name: intro
+                widget: text
+
+  - name: blog
+    label: Blog Posts
+    folder: content/blog
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Date
+        name: date
+        widget: datetime
+      - label: Body
+        name: body
+        widget: markdown
+
+  - name: webinars
+    label: Webinars
+    folder: content/webinars
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Date
+        name: date
+        widget: datetime
+      - label: Speaker
+        name: speaker
+        widget: string
+      - label: Description
+        name: description
+        widget: text
+      - label: Registration Link
+        name: link
+        widget: string
+
+  - name: resources
+    label: Resources
+    folder: content/resources
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Description
+        name: description
+        widget: text
+      - label: File
+        name: file
+        widget: file
