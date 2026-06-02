@@ -1,7 +1,10 @@
 {
   "home": {
-    "title": "TEST LawBridge Title",
-    "intro": "LawBridge helps aspiring lawyers move from knowing the law to applying it through practical training, mentor guidance and portfolio-building experiences.",
-    "primary_button": "Join LawBridge"
+    "eyebrow": "Practical legal development for the SQE, QWE and AI era",
+    "title": "Bridge the gap between legal education and real-world legal practice.",
+    "intro": "LawBridge helps aspiring lawyers build practical legal capability through structured learning, real-world exercises, mentor guidance, workshops, webinars and commercial awareness training.",
+    "primary_button": "Join as a Student",
+    "secondary_button": "Become a Mentor",
+    "third_button": "Explore the Curriculum"
   }
 }
