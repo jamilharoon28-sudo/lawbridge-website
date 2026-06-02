@@ -35,3 +35,17 @@ collections:
               - label: Third Button
                 name: third_button
                 widget: string
+
+          - label: Curriculum Preview Section
+            name: curriculum_preview
+            widget: object
+            fields:
+              - label: Eyebrow
+                name: eyebrow
+                widget: string
+              - label: Title
+                name: title
+                widget: text
+              - label: Intro
+                name: intro
+                widget: text
