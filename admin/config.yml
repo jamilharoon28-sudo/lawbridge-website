@@ -17,12 +17,21 @@ collections:
             name: home
             widget: object
             fields:
-              - label: Title
+              - label: Hero Eyebrow
+                name: eyebrow
+                widget: string
+              - label: Hero Title
                 name: title
                 widget: text
-              - label: Intro
+              - label: Hero Intro
                 name: intro
                 widget: text
               - label: Primary Button
                 name: primary_button
+                widget: string
+              - label: Secondary Button
+                name: secondary_button
+                widget: string
+              - label: Third Button
+                name: third_button
                 widget: string
