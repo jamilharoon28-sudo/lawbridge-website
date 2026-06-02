@@ -8,5 +8,52 @@
 <body>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+(function () {
+  async function loadLawBridgeCMS() {
+    try {
+      const response = await fetch("/content/site.json?cache=" + Date.now());
+      if (!response.ok) return;
+      const data = await response.json();
+      if (!data || !data.home) return;
+
+      const home = data.home;
+
+      function replaceText(oldText, newText) {
+        if (!newText) return;
+        document.querySelectorAll("h1,h2,h3,p,a,button,span").forEach(el => {
+          if ((el.textContent || "").trim() === oldText.trim()) {
+            el.textContent = newText;
+          }
+        });
+      }
+
+      replaceText(
+        "The bridge between legal knowledge and legal capability.",
+        home.title
+      );
+
+      replaceText(
+        "LawBridge helps aspiring lawyers move from knowing the law to applying it through practical training, mentor guidance and portfolio-building experiences.",
+        home.intro
+      );
+
+      replaceText("Join LawBridge", home.primary_button);
+
+    } catch (error) {
+      console.warn("LawBridge CMS content could not be loaded.", error);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(loadLawBridgeCMS, 300);
+    setTimeout(loadLawBridgeCMS, 1000);
+  });
+
+  window.addEventListener("hashchange", function () {
+    setTimeout(loadLawBridgeCMS, 300);
+  });
+})();
+</script>
 </body>
 </html>
