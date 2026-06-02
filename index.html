@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="cms-loading">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
@@ -38,6 +38,16 @@
 @media(max-width:1060px){.nav{gap:10px}.nav a{font-size:.84rem}}@media(max-width:980px){.menu{display:block}.nav{position:absolute;top:88px;left:20px;right:20px;display:none;background:var(--navy);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:22px;box-shadow:var(--shadow)}.nav.open{display:grid;gap:15px}.hero-grid,.page-grid,.split,.blog-layout{grid-template-columns:1fr}.g4,.g3,.g2,.method{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr 1fr}.post{grid-template-columns:1fr}}@media(max-width:680px){h1{font-size:3.05rem}h2{font-size:2.3rem}.container{width:min(100% - 28px,1180px)}.hero,.page-hero,.section{padding-top:64px;padding-bottom:64px}.hero{padding-bottom:118px}.page-hero{padding-bottom:106px}.g4,.g3,.g2,.method,.form,.footer-grid,.row{grid-template-columns:1fr}.actions{flex-direction:column}.btn{width:100%}.brand small{display:none}.footer-bottom{flex-direction:column}.sidebar{position:static}.path-card{grid-template-columns:1fr}}
 
 .section-toolbar{position:fixed;right:18px;bottom:18px;z-index:120;width:min(360px,calc(100vw - 36px));background:rgba(4,27,50,.96);color:white;border:1px solid rgba(255,255,255,.16);border-radius:24px;box-shadow:var(--shadow2);overflow:hidden}.section-toolbar[hidden]{display:none}.studio-toggle{position:fixed;right:18px;bottom:18px;z-index:121;border:0;border-radius:999px;padding:14px 18px;background:var(--gold);color:var(--navy);font-weight:950;box-shadow:var(--shadow)}.studio-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.12)}.studio-head strong{font-family:var(--serif);font-size:1.15rem}.studio-head button,.section-control button{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:white;border-radius:12px;padding:8px 10px;font-weight:900}.studio-body{display:grid;gap:10px;padding:14px;max-height:58vh;overflow:auto}.section-control{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:12px}.section-control span{font-weight:850}.section-control small{display:block;color:rgba(255,255,255,.62)}.section-control .moves{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.section-control.is-off{opacity:.48}.section-marker{position:absolute;top:14px;right:14px;z-index:2;background:rgba(4,27,50,.82);color:white;border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 10px;font-size:.72rem;font-weight:900;opacity:0;transform:translateY(-4px);transition:.2s}.section:hover .section-marker{opacity:1;transform:none}@media(max-width:700px){.section-toolbar{left:12px;right:12px;bottom:12px;width:auto}.studio-body{max-height:52vh}.studio-toggle{right:12px;bottom:12px}}
+
+
+/* Prevent old hardcoded content flashing before CMS content loads */
+html.cms-loading #main {
+  opacity: 0;
+}
+html.cms-ready #main {
+  opacity: 1;
+  transition: opacity .18s ease;
+}
 
 </style>
 </head>
@@ -214,15 +224,18 @@ menu.onclick=()=>nav.classList.toggle("open");document.addEventListener("scroll"
 </script>
 
 
+
 <script>
 (function () {
+  let cmsLoaded = false;
+
   async function loadLawBridgeCMS() {
     try {
       const response = await fetch("/content/site.json?cache=" + Date.now());
-      if (!response.ok) return;
+      if (!response.ok) throw new Error("CMS content unavailable");
 
       const data = await response.json();
-      if (!data.home) return;
+      if (!data.home) throw new Error("Home CMS content missing");
 
       const home = data.home;
 
@@ -273,14 +286,27 @@ menu.onclick=()=>nav.classList.toggle("open");document.addEventListener("scroll"
         );
       }
 
+      cmsLoaded = true;
     } catch (error) {
       console.warn("LawBridge CMS content could not be loaded.", error);
+    } finally {
+      document.documentElement.classList.remove("cms-loading");
+      document.documentElement.classList.add("cms-ready");
     }
   }
 
-  setTimeout(loadLawBridgeCMS, 500);
-  setTimeout(loadLawBridgeCMS, 1200);
-  window.addEventListener("hashchange", () => setTimeout(loadLawBridgeCMS, 500));
+  function runCMS() {
+    document.documentElement.classList.add("cms-loading");
+    document.documentElement.classList.remove("cms-ready");
+    setTimeout(loadLawBridgeCMS, 80);
+  }
+
+  runCMS();
+  setTimeout(loadLawBridgeCMS, 600);
+
+  window.addEventListener("hashchange", function () {
+    setTimeout(loadLawBridgeCMS, 120);
+  });
 })();
 </script>
 
