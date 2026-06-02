@@ -1,31 +1,119 @@
-  - name: "blog"
-    label: "Blog Posts"
-    folder: "content/blog"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Date", name: "date", widget: "datetime"}
-      - {label: "Body", name: "body", widget: "markdown"}
+backend:
+  name: git-gateway
+  branch: main
 
-  - name: "webinars"
-    label: "Webinars"
-    folder: "content/webinars"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Date", name: "date", widget: "datetime"}
-      - {label: "Speaker", name: "speaker", widget: "string"}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "Registration Link", name: "link", widget: "string"}
+media_folder: uploads
+public_folder: /uploads
 
-  - name: "resources"
-    label: "Resources"
-    folder: "content/resources"
+collections:
+  - name: site_content
+    label: LawBridge Website Content
+    files:
+      - label: Main Website Text
+        name: main_website_text
+        file: content/site.json
+        fields:
+          - label: Home Page
+            name: home
+            widget: object
+            fields:
+              - label: Hero Eyebrow
+                name: eyebrow
+                widget: string
+              - label: Hero Title
+                name: title
+                widget: text
+              - label: Hero Intro
+                name: intro
+                widget: text
+              - label: Primary Button
+                name: primary_button
+                widget: string
+              - label: Secondary Button
+                name: secondary_button
+                widget: string
+              - label: Third Button
+                name: third_button
+                widget: string
+
+          - label: Curriculum Preview Section
+            name: curriculum_preview
+            widget: object
+            fields:
+              - label: Eyebrow
+                name: eyebrow
+                widget: string
+              - label: Title
+                name: title
+                widget: text
+              - label: Intro
+                name: intro
+                widget: text
+
+          - label: Problem Section
+            name: problem_section
+            widget: object
+            fields:
+              - label: Eyebrow
+                name: eyebrow
+                widget: string
+              - label: Title
+                name: title
+                widget: text
+              - label: Intro
+                name: intro
+                widget: text
+
+  - name: blog
+    label: Blog Posts
+    folder: content/blog
     create: true
     slug: "{{slug}}"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "File", name: "file", widget: "file"}
+      - label: Title
+        name: title
+        widget: string
+      - label: Date
+        name: date
+        widget: datetime
+      - label: Body
+        name: body
+        widget: markdown
+
+  - name: webinars
+    label: Webinars
+    folder: content/webinars
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Date
+        name: date
+        widget: datetime
+      - label: Speaker
+        name: speaker
+        widget: string
+      - label: Description
+        name: description
+        widget: text
+      - label: Registration Link
+        name: link
+        widget: string
+
+  - name: resources
+    label: Resources
+    folder: content/resources
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Description
+        name: description
+        widget: text
+      - label: File
+        name: file
+        widget: file
