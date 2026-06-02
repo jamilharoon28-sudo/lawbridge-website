@@ -1,0 +1,22 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "site_content"
+    label: "LawBridge Website Content"
+    files:
+      - label: "Main Website Text"
+        name: "main_website_text"
+        file: "content/site.json"
+        fields:
+          - label: "Home Page"
+            name: "home"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "text" }
+              - { label: "Intro", name: "intro", widget: "text" }
+              - { label: "Primary Button", name: "primary_button", widget: "string" }
