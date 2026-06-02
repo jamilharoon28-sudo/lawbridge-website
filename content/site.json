@@ -6,5 +6,10 @@
     "primary_button": "Join as a Student",
     "secondary_button": "Become a Mentor",
     "third_button": "Explore the Curriculum"
+  },
+  "curriculum_preview": {
+    "eyebrow": "Practical skills curriculum",
+    "title": "Develop the skills legal education alone cannot fully provide.",
+    "intro": "The LawBridge curriculum is built around practical skills aspiring lawyers need to become more commercially aware, confident and practice-ready."
   }
 }
