@@ -1,0 +1,51 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+site_url: "https://melodious-unicorn-2da50e.netlify.app"
+display_url: "https://melodious-unicorn-2da50e.netlify.app"
+logo_url: "/favicon.svg"
+
+collections:
+  - name: "site_content"
+    label: "LawBridge Website Content"
+    files:
+      - label: "Main Website Text"
+        name: "main_website_text"
+        file: "content/site.json"
+        fields:
+          - label: "Site"
+            name: "site"
+            widget: "object"
+            fields:
+              - { label: "Brand", name: "brand", widget: "string" }
+              - { label: "Tagline", name: "tagline", widget: "string" }
+              - { label: "Primary CTA", name: "primary_cta", widget: "string" }
+              - { label: "Secondary CTA", name: "secondary_cta", widget: "string" }
+
+          - label: "Home Page"
+            name: "home"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "text" }
+              - { label: "Intro", name: "intro", widget: "text" }
+              - { label: "Primary Button", name: "primary_button", widget: "string" }
+              - { label: "Secondary Button", name: "secondary_button", widget: "string" }
+
+          - label: "Curriculum Page"
+            name: "curriculum"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "text" }
+              - { label: "Intro", name: "intro", widget: "text" }
+
+          - label: "Editing Notes"
+            name: "editable_notes"
+            widget: "object"
+            fields:
+              - { label: "Instructions", name: "instructions", widget: "text", required: false }
